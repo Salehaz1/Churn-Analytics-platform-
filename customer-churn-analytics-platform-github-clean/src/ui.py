@@ -88,31 +88,6 @@ html, body, [data-testid="stAppViewContainer"] {{
   gap: .55rem;
 }}
 
-[data-testid="stTabs"] button[role="tab"],
-[data-testid="stTabs"] button[role="tab"] p,
-[data-testid="stTabs"] button[role="tab"] span {{
-  color: var(--text) !important;
-  font-weight: 800 !important;
-}}
-
-[data-testid="stTabs"] button[role="tab"][aria-selected="true"],
-[data-testid="stTabs"] button[role="tab"][aria-selected="true"] p,
-[data-testid="stTabs"] button[role="tab"][aria-selected="true"] span {{
-  color: var(--text) !important;
-}}
-
-[data-testid="stTabs"] button[role="tab"][aria-selected="false"],
-[data-testid="stTabs"] button[role="tab"][aria-selected="false"] p,
-[data-testid="stTabs"] button[role="tab"][aria-selected="false"] span {{
-  color: var(--text) !important;
-  opacity: .72;
-}}
-
-[data-testid="stTabs"] [role="tablist"] {{
-  gap: 8px;
-  border-bottom: 1px solid var(--border);
-}}
-
 h1, h2, h3 {{
   letter-spacing: 0;
   color: var(--text);
@@ -223,61 +198,6 @@ h1, h2, h3 {{
   border-radius: 99px;
   background: var(--teal);
   box-shadow: 0 0 0 5px rgba(20, 184, 166, .12);
-}}
-
-.insight-card {{
-  position: relative;
-  overflow: hidden;
-  min-height: 190px;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 22px;
-  background:
-    linear-gradient(135deg, rgba(14, 165, 233, .16), rgba(20, 184, 166, .10)),
-    var(--card-bg-strong);
-  box-shadow: var(--shadow);
-  transition: transform .20s ease, border-color .20s ease, box-shadow .20s ease;
-}}
-
-.insight-card:hover {{
-  transform: translateY(-3px);
-  border-color: rgba(20, 184, 166, .38);
-  box-shadow: 0 28px 90px rgba(20, 184, 166, .16);
-}}
-
-.insight-card:before {{
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, var(--blue), var(--teal));
-}}
-
-.insight-kicker {{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--teal);
-  font-size: .78rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  margin-bottom: 14px;
-}}
-
-.insight-title {{
-  color: var(--text);
-  font-size: 1.08rem;
-  font-weight: 800;
-  margin-bottom: 10px;
-}}
-
-.insight-body {{
-  color: var(--muted);
-  font-size: .96rem;
-  line-height: 1.65;
 }}
 
 .section-title {{
@@ -571,19 +491,6 @@ def metric_card(label: str, value: str, definition: str, trend: str = "Live metr
   <div class="metric-label">{html.escape(label)}</div>
   <div class="metric-value">{html.escape(value)}</div>
   <div class="metric-trend"><span class="metric-dot" style="background:{color_var}; box-shadow:0 0 0 5px color-mix(in srgb, {color_var} 18%, transparent);"></span>{html.escape(trend)}</div>
-</div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-
-def insight_card(index: int, insight: str) -> None:
-    st.markdown(
-        f"""
-<div class="insight-card" title="{html.escape(insight)}">
-  <div class="insight-kicker">AI Insight {index}</div>
-  <div class="insight-title">Executive Recommendation</div>
-  <div class="insight-body">{html.escape(insight)}</div>
 </div>
         """,
         unsafe_allow_html=True,
