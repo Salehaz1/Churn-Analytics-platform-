@@ -27,7 +27,6 @@ from src.ui import (
     chart_card,
     format_metric_value,
     inject_css,
-    insight_card,
     metric_card,
     quality_issue_card,
     render_hero,
@@ -392,10 +391,10 @@ def step_executive_dashboard() -> None:
         chart_card("Customer Risk Distribution", "Donut view of the customer base across churn risk levels.", dashboard_charts["customer_risk_distribution"], "customer_risk_distribution")
 
     section("Executive AI Summary", "Clear, non-technical business insights generated from the analytics outputs.")
-    insight_cols = st.columns(2)
+    insight_cols = st.columns(len(result.executive_insights[:5]))
     for idx, insight in enumerate(result.executive_insights[:5]):
-        with insight_cols[idx % 2]:
-            insight_card(idx + 1, insight)
+        with insight_cols[idx]:
+            metric_card(f"Insight {idx + 1}", "AI", insight, insight[:58] + ("..." if len(insight) > 58 else ""), "teal")
 
     if st.button("Continue →", use_container_width=True, key="dash_continue"):
         st.session_state.max_completed = max(st.session_state.max_completed, 3)
